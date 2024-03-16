@@ -25,56 +25,57 @@ docReady(function () {
                 console.log("Not a QR-GAME code");
                 return;
             }
-            if (!decodedText.split(":")[1].split("=")[0] == "TCOTMV") {
-                console.log("Not a TCOTMV code");
+            if (!decodedText.split(":")[1].split("=")[0] == "SGTMOTMS") {
+                console.log("Not a SGTMOTMS code");
                 return;
             }
             try {
             const qrData = atob(decodedText.split(":")[1].split("=")[1]).split("-");
             console.log(qrData);
-            const vegimal = qrData[0];
-            const vegimalNumber = qrData[1];
-            if (!localStorage.getItem("vegimals")) {
-                localStorage.setItem("vegimals", "");
+            const squirrel = qrData[0];
+            const squirrelNumber = qrData[1];
+            if (!localStorage.getItem("squirrels")) {
+                localStorage.setItem("squirrels", "");
             }
-            if (!localStorage.getItem("vegimalNums")) {
-                localStorage.setItem("vegimalNums", "");
+            if (!localStorage.getItem("squirrelNums")) {
+                localStorage.setItem("squirrelNums", "");
             }
-            if (localStorage.getItem("vegimals").split(",").includes(vegimal) || localStorage.getItem("vegimalNums").split(",").includes(vegimalNumber)) {
-                alert("You already found this Vegimal!")
+            if (localStorage.getItem("squirrels").split(",").includes(squirrel) || localStorage.getItem("squirrelNums").split(",").includes(squirrelNumber)) {
+                alert("You already found this squirrel!")
                 return;
             }
-            localStorage.setItem("vegimals", localStorage.getItem("vegimals")+","+vegimal);
-            localStorage.setItem("vegimalNums", localStorage.getItem("vegimalNums")+","+vegimalNumber);
-            if (localStorage.getItem("vegimals").startsWith(",")) {
-                localStorage.setItem("vegimals", localStorage.getItem("vegimals").replace(",", ""));
+            localStorage.setItem("squirrels", localStorage.getItem("squirrels")+","+squirrel);
+            localStorage.setItem("squirrelNums", localStorage.getItem("squirrelNums")+","+squirrelNumber);
+            if (localStorage.getItem("squirrels").startsWith(",")) {
+                localStorage.setItem("squirrels", localStorage.getItem("squirrels").replace(",", ""));
             }
-            if (localStorage.getItem("vegimalNums").startsWith(",")) {
-                localStorage.setItem("vegimalNums", localStorage.getItem("vegimalNums").replace(",", ""));
+            if (localStorage.getItem("squirrelNums").startsWith(",")) {
+                localStorage.setItem("squirrelNums", localStorage.getItem("squirrelNums").replace(",", ""));
             }
             const newEl = document.createElement("li");
-            newEl.innerHTML = `<b>Vegimal #${vegimalNumber}: ${vegimal}</b>`;
-            document.getElementById("found-vegimals").appendChild(newEl);
+            newEl.innerHTML = `<b>squirrel #${squirrelNumber}: ${squirrel}</b>`;
+            document.getElementById("found-squirrels").appendChild(newEl);
             const newHint = document.createElement("li");
-            newHint.innerHTML = `<b>#${parseInt(vegimalNumber)+1}: ${hints[(parseInt(vegimalNumber)+1).toString()]}</b>`
+            newHint.innerHTML = `<b>#${parseInt(squirrelNumber)+1}: ${hints[(parseInt(squirrelNumber)+1).toString()]}</b>`
             document.getElementById("hints").appendChild(newHint);
             } catch (e) {
                 console.error(e);
             }
         }
     }
-    if (!localStorage.getItem("vegimals")) {
-        localStorage.setItem("vegimals", "");
+    if (!localStorage.getItem("squirrels")) {
+        localStorage.setItem("squirrels", "");
     }
-    if (!localStorage.getItem("vegimalNums")) {
-        localStorage.setItem("vegimalNums", "");
+    if (!localStorage.getItem("squirrelNums")) {
+        localStorage.setItem("squirrelNums", "");
     }
-    for (var i = 0; i < localStorage.getItem("vegimals").split(",").length; i++) {
+    for (var i = 0; i < localStorage.getItem("squirrels").split(",").length; i++) {
         const newEl = document.createElement("li");
-        newEl.innerHTML = `<b>Vegimal #${localStorage.getItem("vegimalNums").split(",")[i]}: ${localStorage.getItem("vegimals").split(",")[i]}</b>`;
-        document.getElementById("found-vegimals").appendChild(newEl);
+        newEl.innerHTML = `<b>squirrel #${localStorage.getItem("squirrelNums").split(",")[i]}: ${localStorage.getItem("squirrels").split(",")[i]}</b>`;
+        document.getElementById("found-squirrels").appendChild(newEl);
+        
         const newHint = document.createElement("li");
-        newHint.innerHTML = `<b>#${parseInt(localStorage.getItem("vegimalNums").split(",")[i])+1}: ${hints[(parseInt(localStorage.getItem("vegimalNums").split(",")[i])+1).toString()]}</b>`
+        newHint.innerHTML = `<b>#${parseInt(localStorage.getItem("squirrelNums").split(",")[i])+1}: ${hints[(parseInt(localStorage.getItem("squirrelNums").split(",")[i])+1).toString()]}</b>`
         document.getElementById("hints").appendChild(newHint);
     }
     var html5QrcodeScanner = new Html5QrcodeScanner(
