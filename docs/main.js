@@ -20,7 +20,7 @@ docReady(function () {
             resultContainer.innerText += decodedText;
             // Handle on success condition with the decoded message.
             console.log(`Scan result ${decodedText}`, decodedResult);
-            // QR-GAME:TCOTMV=VHVuaXAtMDE=
+            // QR-GAME:SGTMOTMS=VHVuaXAtMDE=
             if (!decodedText.split(":")[0] == "QR-GAME") {
                 console.log("Not a QR-GAME code");
                 return;
@@ -73,7 +73,7 @@ docReady(function () {
         const newEl = document.createElement("li");
         newEl.innerHTML = `<b>squirrel #${localStorage.getItem("squirrelNums").split(",")[i]}: ${localStorage.getItem("squirrels").split(",")[i]}</b>`;
         document.getElementById("found-squirrels").appendChild(newEl);
-        
+
         const newHint = document.createElement("li");
         newHint.innerHTML = `<b>#${parseInt(localStorage.getItem("squirrelNums").split(",")[i])+1}: ${hints[(parseInt(localStorage.getItem("squirrelNums").split(",")[i])+1).toString()]}</b>`
         document.getElementById("hints").appendChild(newHint);
